@@ -1,0 +1,1033 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 100%;
+    font-family: Poppins, Inter, "Segoe UI", Arial, sans-serif;
+    background: #050817;
+    color: #fff;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.register-page {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+
+/* =========================================
+   BACKGROUND IMAGE
+========================================= */
+
+.register-bg,
+.register-overlay {
+    position: fixed;
+    inset: 0;
+}
+
+
+.register-bg {
+    z-index: -3;
+
+    background-image: url("/images/register-bg.png");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    transform: scale(1.015);
+}
+
+
+/* =========================================
+   DARK OVERLAY
+========================================= */
+
+.register-overlay {
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 7, 25, 0.90),
+            rgba(3, 7, 25, 0.58) 44%,
+            rgba(3, 7, 25, 0.75)
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(3, 7, 25, 0.25),
+            rgba(3, 7, 25, 0.80)
+        );
+}
+
+
+/* =========================================
+   EXTRA LIGHT EFFECT
+========================================= */
+
+.register-page::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 18% 75%,
+            rgba(168, 85, 247, 0.17),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 82% 25%,
+            rgba(37, 99, 235, 0.18),
+            transparent 32%
+        );
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.register-nav {
+    width: 92%;
+    max-width: 1400px;
+
+    min-height: 88px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.nook-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 29px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.brand-mark {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #a855f7
+        );
+
+    box-shadow:
+        0 8px 28px rgba(91, 72, 255, 0.35);
+}
+
+
+.brand-mark.small {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 19px;
+}
+
+
+.register-nav p {
+    font-size: 13px;
+
+    color: rgba(255, 255, 255, 0.67);
+}
+
+
+.register-nav a:not(.nook-brand) {
+    color: #fff;
+
+    text-decoration: none;
+
+    margin-left: 8px;
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(168, 85, 247, 0.72);
+
+    border-radius: 999px;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.register-layout {
+    width: 92%;
+    max-width: 1400px;
+
+    min-height: calc(100vh - 88px);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(380px, 510px);
+
+    align-items: center;
+
+    gap: 7vw;
+
+    padding: 45px 0 70px;
+}
+
+
+/* =========================================
+   LEFT INTRO
+========================================= */
+
+.intro {
+    max-width: 650px;
+
+    animation:
+        introAnimation
+        0.8s
+        ease
+        both;
+}
+
+
+.eyebrow {
+    display: block;
+
+    color: #c4b5fd;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 7px;
+
+    margin-bottom: 14px;
+}
+
+
+.intro h1 {
+    font-size: clamp(54px, 6vw, 86px);
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+}
+
+
+.intro h1 span {
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ec4899,
+            #a855f7,
+            #6366f1,
+            #22d3ee
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+
+.intro > p {
+    max-width: 550px;
+
+    margin-top: 28px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 16px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features {
+    display: grid;
+
+    gap: 18px;
+
+    margin-top: 34px;
+}
+
+
+.features > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.features b {
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid rgba(168, 85, 247, 0.75);
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    background: rgba(8, 12, 40, 0.56);
+
+    color: #c4b5fd;
+
+    font-size: 22px;
+}
+
+
+.features strong,
+.features small {
+    display: block;
+}
+
+
+.features strong {
+    font-size: 14px;
+}
+
+
+.features small {
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.50);
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   REGISTER CARD
+========================================= */
+
+.register-card {
+    padding: 34px;
+
+    border:
+        1px solid
+        rgba(168, 85, 247, 0.52);
+
+    border-radius: 28px;
+
+    background:
+        rgba(5, 12, 40, 0.67);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.48),
+        inset 0 1px rgba(255, 255, 255, 0.08),
+        0 0 45px rgba(99, 102, 241, 0.10);
+
+    animation:
+        cardAnimation
+        0.8s
+        0.08s
+        ease
+        both;
+}
+
+
+.card-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 19px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 22px;
+}
+
+
+.register-card h2 {
+    font-size: 31px;
+}
+
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.67);
+
+    margin: 7px 0 24px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.register-card form {
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.register-card label {
+    display: grid;
+
+    gap: 6px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input-wrap {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.input-wrap > span {
+    position: absolute;
+
+    left: 15px;
+
+    color: rgba(255, 255, 255, 0.65);
+}
+
+
+.input-wrap input {
+    width: 100%;
+
+    height: 49px;
+
+    padding:
+        0
+        70px
+        0
+        42px;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    border:
+        1px solid
+        rgba(124, 92, 246, 0.50);
+
+    background:
+        rgba(5, 13, 40, 0.60);
+
+    color: #fff;
+
+    font-size: 13px;
+}
+
+
+.input-wrap input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+}
+
+
+.input-wrap input:focus {
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(139, 92, 246, 0.10);
+}
+
+
+/* =========================================
+   SHOW PASSWORD
+========================================= */
+
+.toggle {
+    position: absolute;
+
+    right: 12px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #c4b5fd;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.register-card small {
+    min-height: 12px;
+
+    color: #fb7185;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   TERMS
+========================================= */
+
+.terms {
+    display: flex !important;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin: 2px 0 3px;
+
+    color: rgba(255, 255, 255, 0.50) !important;
+
+    font-size: 11px !important;
+
+    line-height: 1.5;
+}
+
+
+.terms input {
+    margin-top: 3px;
+
+    accent-color: #8b5cf6;
+}
+
+
+.terms a,
+.bottom a {
+    color: #c084fc;
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   CREATE BUTTON
+========================================= */
+
+.create-btn {
+    width: 100%;
+
+    height: 51px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    padding: 0 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    color: #fff;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            100deg,
+            #2563eb,
+            #7c3aed,
+            #d946ef
+        );
+
+    box-shadow:
+        0 14px 34px
+        rgba(99, 102, 241, 0.28);
+
+    transition: 0.25s;
+}
+
+
+.create-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(99, 102, 241, 0.40);
+}
+
+
+.create-btn b {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 21px 0 13px;
+
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 10px;
+}
+
+
+.divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(255, 255, 255, 0.13);
+}
+
+
+/* =========================================
+   SOCIAL BUTTONS
+========================================= */
+
+.social {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+
+.social button {
+    height: 43px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(124, 92, 246, 0.40);
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    color: #fff;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BOTTOM LOGIN
+========================================= */
+
+.bottom {
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: rgba(255, 255, 255, 0.50);
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes introAnimation {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes cardAnimation {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 950px) {
+
+    .register-layout {
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+
+        gap: 45px;
+    }
+
+
+    .intro {
+        text-align: center;
+
+        margin: auto;
+    }
+
+
+    .intro > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .features {
+        text-align: left;
+
+        width: fit-content;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .register-nav {
+        min-height: 75px;
+    }
+
+
+    .nook-brand {
+        font-size: 23px;
+    }
+
+
+    .register-nav p {
+        font-size: 10px;
+    }
+
+
+    .register-nav a:not(.nook-brand) {
+        padding: 8px 12px;
+    }
+
+
+    .register-layout {
+        width: 90%;
+
+        padding-top: 35px;
+    }
+
+
+    .intro h1 {
+        font-size: 50px;
+    }
+
+
+    .intro > p {
+        font-size: 13px;
+    }
+
+
+    .register-card {
+        padding: 24px 18px;
+
+        border-radius: 22px;
+    }
+
+
+    .register-card h2 {
+        font-size: 26px;
+    }
+
+
+    .social {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+}
+
+
+/* =========================================
+   SOCIAL LINKS (same look as the old buttons)
+========================================= */
+
+.social a {
+    height: 43px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(124, 92, 246, 0.40);
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease;
+}
+
+
+.social a:hover {
+    background: rgba(255, 255, 255, 0.07);
+
+    border-color: rgba(124, 92, 246, 0.70);
+}
+
+
+/* =========================================
+   PASSWORD STRENGTH METER
+   data-level on #strengthMeter: 0 (empty) .. 4
+========================================= */
+
+.strength {
+    margin-top: 10px;
+}
+
+
+.strength-bars {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 6px;
+}
+
+
+.strength-bars span {
+    height: 5px;
+
+    border-radius: 99px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    transition:
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.strength-text {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.50);
+}
+
+
+.strength-text strong {
+    font-weight: 700;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    transition: color .3s ease;
+}
+
+
+/* Level colours: red -> orange -> yellow -> green */
+
+.strength[data-level="1"] .strength-bars span:nth-child(-n+1) { background: #ff5d73; }
+.strength[data-level="2"] .strength-bars span:nth-child(-n+2) { background: #ff9f43; }
+.strength[data-level="3"] .strength-bars span:nth-child(-n+3) { background: #f5c542; }
+.strength[data-level="4"] .strength-bars span:nth-child(-n+4) { background: #2ee59d; box-shadow: 0 0 10px rgba(46,229,157,.45); }
+
+.strength[data-level="1"] strong { color: #ff5d73; }
+.strength[data-level="2"] strong { color: #ff9f43; }
+.strength[data-level="3"] strong { color: #f5c542; }
+.strength[data-level="4"] strong { color: #2ee59d; }
+
+
+/* Requirement checklist (it existed in the markup but had no styling) */
+
+.password-rules {
+    display: grid;
+
+    gap: 5px;
+
+    margin-top: 10px;
+}
+
+
+.password-rule {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    transition: color .25s ease;
+}
+
+
+.password-rule .rule-icon {
+    width: 16px;
+
+    height: 16px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    font-size: 9px;
+
+    background: rgba(255, 93, 115, 0.18);
+
+    color: #ff5d73;
+}
+
+
+.password-rule.valid {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+.password-rule.valid .rule-icon {
+    background: rgba(46, 229, 157, 0.18);
+
+    color: #2ee59d;
+}

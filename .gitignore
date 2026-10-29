@@ -1,0 +1,14 @@
+# dependencies and secrets — never commit these
+node_modules/
+.env
+.env.*
+!.env.example
+
+# logs / OS files
+npm-debug.log*
+.DS_Store
+
+# files uploaded by users when STORAGE_DRIVER=local
+uploads/files/*
+uploads/avatars/*
+!uploads/**/.gitkeep

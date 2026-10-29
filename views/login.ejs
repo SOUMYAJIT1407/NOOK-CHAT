@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login — NOOK</title>
+
+    <!-- Cache-busting -->
+    <link
+        rel="stylesheet"
+        href="/css/login.css?v=2"
+    >
+
+</head>
+
+
+<body>
+
+<main class="login-page">
+
+
+    <!-- =====================================================
+         BACKGROUND IMAGE
+    ====================================================== -->
+
+    <div class="login-bg"></div>
+
+    <div class="login-overlay"></div>
+
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="login-nav">
+
+        <a href="/" class="nook-brand">
+
+            <span class="brand-mark">
+                N
+            </span>
+
+            <span class="brand-name">
+                NOOK
+            </span>
+
+        </a>
+
+
+        <div class="nav-account">
+
+            <span>
+                Don't have an account?
+            </span>
+
+            <a href="/register">
+                Register →
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         LOGIN AREA
+    ====================================================== -->
+
+    <section class="login-area">
+
+
+        <!-- =================================================
+             LOGIN CARD
+        ================================================== -->
+
+        <div class="login-card">
+
+
+            <!-- BRAND -->
+
+            <div class="card-brand">
+
+                <span class="brand-mark card-logo">
+                    N
+                </span>
+
+                <span>
+                    NOOK
+                </span>
+
+            </div>
+
+
+
+            <!-- HEADING -->
+
+            <div class="login-heading">
+
+                <h1>
+                    Welcome back
+                </h1>
+
+                <p>
+                    Log in to your account and continue
+                    your journey with NOOK.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOGIN FORM
+            ================================================== -->
+
+            <form
+                id="loginForm"
+                action="/login"
+                method="POST"
+                novalidate
+            >
+
+
+                <!-- USERNAME / EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Username or Email
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            ◎
+                        </span>
+
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="text"
+                            placeholder="Enter your username or email"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small
+                        class="field-error"
+                        data-error-for="email"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            ▣
+                        </span>
+
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <small
+                        class="field-error"
+                        data-error-for="password"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     OPTIONS
+                ================================================== -->
+
+                <div class="login-options">
+
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                            name="remember"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        id="forgotPassword"
+                        class="forgot-password"
+                    >
+                        Forgot password?
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOGIN BUTTON
+                ================================================== -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+
+                    <span class="button-text">
+                        Log In
+                    </span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- =================================================
+                 DIVIDER
+            ================================================== -->
+
+            <div class="divider">
+
+                <span></span>
+
+                <small>
+                    or
+                </small>
+
+                <span></span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SOCIAL BUTTONS
+            ================================================== -->
+
+            <div class="social-buttons">
+
+                <!-- Starts the real Google OAuth flow (see routes/oauthRoutes.js) -->
+                <a
+                    href="/auth/google"
+                    class="social-button"
+                >
+
+                    <span class="google">
+                        G
+                    </span>
+
+                    <span>
+                        Continue with Google
+                    </span>
+
+                </a>
+
+
+                <!-- Facebook: a plain link to Facebook only (no Facebook login is performed) -->
+                <a
+                    href="https://www.facebook.com/"
+                    class="social-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <span class="facebook">
+                        f
+                    </span>
+
+                    <span>
+                        Continue with Facebook
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 REGISTER
+            ================================================== -->
+
+            <div class="register-bottom">
+
+                <span>
+                    Don't have an account?
+                </span>
+
+                <a href="/register">
+                    Create account →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Decorative glow -->
+
+    <div class="glow glow-left"></div>
+
+    <div class="glow glow-right"></div>
+
+
+</main>
+
+
+
+<!-- Server messages (wrong password, Google errors, "account created") shown as a toast -->
+<div id="authNotice"
+     data-message="<%= typeof error !== 'undefined' && error ? error : '' %>"
+     data-type="<%= typeof registered !== 'undefined' && registered ? 'success' : 'error' %>"
+     data-success="<%= typeof registered !== 'undefined' && registered ? 'Account created! Please log in.' : '' %>"
+     hidden></div>
+<script src="/js/auth-notice.js"></script>
+<script src="/js/login.js?v=2"></script>
+
+</body>
+
+</html>

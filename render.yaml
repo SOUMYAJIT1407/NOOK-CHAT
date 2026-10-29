@@ -1,0 +1,18 @@
+# Render "Blueprint": New + -> Blueprint -> pick this repository. You only have to paste MONGO_URI.
+services:
+  - type: web
+    name: nook-chat
+    runtime: node
+    plan: free                      # WebSockets work on every plan. Free services sleep when idle.
+    buildCommand: npm ci --omit=dev
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: SESSION_SECRET
+        generateValue: true         # Render creates a strong random value for you
+      - key: MONGO_URI
+        sync: false                 # paste your MongoDB Atlas connection string in the dashboard

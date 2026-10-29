@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#080b1e">
+  <title>Messenger — NOOK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/chat.css?v=20">
+  <script>try { document.documentElement.dataset.theme = localStorage.getItem("nook-theme") || "dark"; } catch (e) {}</script>
+</head>
+<body class="messenger-page">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="app" id="app">
+    <!-- ============ NAV RAIL ============ -->
+    <nav class="rail" aria-label="Main">
+      <a href="/" class="rail-logo" title="NOOK home">N</a>
+      <div class="rail-nav">
+        <button class="rail-btn active" id="navChats" type="button" title="Chats"><i data-icon="chat"></i></button>
+        <button class="rail-btn" id="navRequests" type="button" title="Friend requests"><i data-icon="user-plus"></i><b class="rail-badge" id="requestBadge">0</b></button>
+        <button class="rail-btn" id="navProfile" type="button" title="My profile"><i data-icon="user"></i></button>
+      </div>
+      <div class="rail-bottom">
+        <button class="rail-btn" id="themeToggle" type="button" title="Toggle theme"><i data-icon="moon"></i></button>
+        <a class="rail-btn" href="/logout" title="Log out"><i data-icon="log-out"></i></a>
+      </div>
+    </nav>
+
+    <!-- ============ CONVERSATION LIST ============ -->
+    <aside class="list-panel" id="listPanel">
+      <header class="list-head">
+        <div>
+          <h2>Messages</h2>
+          <p id="listSubtitle">Your conversations</p>
+        </div>
+        <button class="icon-btn" id="newChatBtn" type="button" title="Find people"><i data-icon="plus"></i></button>
+      </header>
+
+      <div class="search-box">
+        <i data-icon="search"></i>
+        <input id="userSearch" type="text" autocomplete="off" spellcheck="false" placeholder="Search by name…" maxlength="30">
+        <button id="clearSearch" type="button" aria-label="Clear search"><i data-icon="x"></i></button>
+      </div>
+
+      <button class="request-strip" id="requestStrip" type="button">
+        <span class="request-icon"><i data-icon="user-plus"></i></span>
+        <span class="request-copy"><strong>Friend requests</strong><small>See who wants to connect</small></span>
+        <b id="headerRequestBadge" class="count-pill">0</b>
+      </button>
+
+      <div class="list-scroll" id="listScroll">
+        <section id="connectionsSection">
+          <div class="section-label"><span>CONVERSATIONS</span><span id="connCount">0</span></div>
+          <div id="friendsList" class="friends-list"></div>
+        </section>
+
+        <section id="peopleSection" hidden>
+          <div class="section-label"><span>PEOPLE ON NOOK</span><span id="resultCount">0</span></div>
+          <div id="searchLoading" class="panel-empty" hidden><div class="loader"></div><strong>Searching…</strong></div>
+          <div id="noSearchResults" class="panel-empty" hidden><div class="empty-symbol"><i data-icon="search"></i></div><strong>No matches</strong><span>Try different characters of their name.</span></div>
+          <div id="searchResults"></div>
+        </section>
+      </div>
+
+      <div class="me-card">
+        <button class="me-main" id="meCard" type="button">
+          <span id="meAvatar"></span>
+          <span class="me-copy"><strong id="meName"></strong><small id="meBio">Online now</small></span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ============ CHAT ============ -->
+    <main class="chat-panel" id="chatPanel">
+      <header class="chat-header" id="chatHeader"></header>
+
+      <div class="chat-body" id="chatBody">
+        <div id="messages" class="messages"></div>
+        <button class="scroll-down" id="scrollDown" type="button" hidden><i data-icon="arrow-down"></i><b id="scrollDownCount" hidden>0</b></button>
+        <div class="drop-overlay" id="dropOverlay"><div><i data-icon="upload"></i><strong>Drop to share</strong><span>Images and files up to 25 MB</span></div></div>
+      </div>
+
+      <form id="messageForm" class="composer" hidden>
+        <div id="replyPreview" class="reply-preview" hidden></div>
+        <div id="attachTray" class="attach-tray" hidden></div>
+        <div class="composer-row" id="composerRow">
+          <button class="composer-btn" type="button" id="attachButton" title="Attach file or image"><i data-icon="paperclip"></i></button>
+          <input type="file" id="fileInput" multiple hidden>
+          <div class="composer-field">
+            <textarea id="messageInput" rows="1" maxlength="5000" autocomplete="off" placeholder="Write a message…"></textarea>
+            <button class="composer-btn ghost" type="button" id="emojiButton" title="Emoji"><i data-icon="smile"></i></button>
+          </div>
+          <button class="composer-btn" type="button" id="micButton" title="Record voice message"><i data-icon="mic"></i></button>
+          <button class="send-button" type="submit" id="sendButton" title="Send" hidden><i data-icon="send"></i></button>
+        </div>
+        <div class="record-bar" id="recordBar" hidden>
+          <button class="composer-btn danger" type="button" id="recordCancel" title="Discard"><i data-icon="trash"></i></button>
+          <span class="rec-dot"></span><span id="recordTime">0:00</span><span class="rec-hint">Recording voice message…</span>
+          <button class="send-button" type="button" id="recordSend" title="Send voice message"><i data-icon="send"></i></button>
+        </div>
+        <div class="emoji-pop" id="emojiPop" hidden></div>
+      </form>
+    </main>
+
+    <!-- ============ INFO PANEL ============ -->
+    <aside class="info-panel" id="infoPanel" hidden></aside>
+  </div>
+
+  <!-- Friend requests -->
+  <div class="modal-backdrop" id="requestsModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="requestsTitle">
+      <div class="modal-head">
+        <div><span class="eyebrow">NOOK</span><h2 id="requestsTitle">Friend requests</h2></div>
+        <button class="modal-close" data-close type="button"><i data-icon="x"></i></button>
+      </div>
+      <div id="requestsList" class="requests-list"></div>
+    </section>
+  </div>
+
+  <!-- My profile -->
+  <div class="modal-backdrop" id="profileModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+      <div class="modal-head">
+        <div><span class="eyebrow">ACCOUNT</span><h2 id="profileTitle">My profile</h2></div>
+        <button class="modal-close" data-close type="button"><i data-icon="x"></i></button>
+      </div>
+      <div class="profile-edit">
+        <div class="avatar-edit">
+          <div id="profileAvatar"></div>
+          <div class="avatar-actions">
+            <button class="btn secondary" id="changePhoto" type="button"><i data-icon="camera"></i> Change photo</button>
+            <button class="btn ghost" id="removePhoto" type="button">Remove</button>
+            <input type="file" id="photoInput" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+          </div>
+        </div>
+        <label class="field"><span>Username</span><input type="text" id="profileUsername" disabled></label>
+        <label class="field"><span>Email</span><input type="text" id="profileEmail" disabled></label>
+        <label class="field"><span>Bio <em id="bioCount">0/160</em></span><textarea id="profileBio" rows="3" maxlength="160" placeholder="Tell people a little about yourself…"></textarea></label>
+        <div class="modal-foot"><button class="btn primary" id="saveProfile" type="button">Save changes</button></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Confirm / edit dialog -->
+  <div class="modal-backdrop" id="dialogModal" hidden>
+    <section class="modal small" role="dialog" aria-modal="true">
+      <div class="modal-head"><h2 id="dialogTitle"></h2><button class="modal-close" data-close type="button"><i data-icon="x"></i></button></div>
+      <div class="dialog-body"><p id="dialogText"></p><textarea id="dialogInput" rows="4" maxlength="5000" hidden></textarea></div>
+      <div class="modal-foot"><button class="btn ghost" data-close type="button">Cancel</button><button class="btn primary" id="dialogOk" type="button">OK</button></div>
+    </section>
+  </div>
+
+  <!-- Delete message: "for me" / "for everyone" -->
+  <div class="modal-backdrop" id="deleteModal" hidden>
+    <section class="modal small" role="dialog" aria-modal="true" aria-labelledby="deleteTitle">
+      <div class="modal-head"><h2 id="deleteTitle">Delete message?</h2><button class="modal-close" data-close type="button" aria-label="Cancel"><i data-icon="x"></i></button></div>
+      <div class="dialog-body"><p id="deleteText"></p></div>
+      <div class="delete-options">
+        <button class="btn primary danger" id="deleteEveryone" type="button"><i data-icon="trash"></i> Delete for everyone</button>
+        <button class="btn secondary" id="deleteMe" type="button"><i data-icon="user"></i> Delete for me</button>
+        <button class="btn ghost" data-close type="button">Cancel</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Image viewer -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" type="button" id="lightboxClose"><i data-icon="x"></i></button>
+    <a class="lightbox-dl" id="lightboxDl" href="#" download><i data-icon="download"></i> Download</a>
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <!-- Reaction picker -->
+  <div class="react-pop" id="reactPop" hidden></div>
+
+  <!-- ============ CALL UI ============ -->
+  <div class="incoming-call" id="incomingCall" hidden>
+    <div id="incomingAvatar"></div>
+    <div class="incoming-copy"><small id="incomingKind">Incoming call</small><strong id="incomingName"></strong></div>
+    <button class="call-btn decline" id="declineCall" type="button" title="Decline"><i data-icon="phone"></i></button>
+    <button class="call-btn accept" id="acceptCall" type="button" title="Accept"><i data-icon="phone"></i></button>
+  </div>
+
+  <div class="call-overlay" id="callOverlay" hidden>
+    <div class="call-stage">
+      <video id="remoteVideo" autoplay playsinline></video>
+      <div class="call-avatar-stage" id="callAvatarStage">
+        <div id="callAvatar"></div>
+        <h2 id="callName"></h2>
+        <p id="callStatus">Calling…</p>
+      </div>
+      <div class="call-topbar"><div><strong id="callTitle"></strong><small id="callTimer">Calling…</small></div><span class="peer-muted" id="peerMuted" hidden><i data-icon="mic-off"></i> Muted</span></div>
+      <video id="localVideo" class="local-video" autoplay playsinline muted></video>
+      <div class="call-controls">
+        <button class="call-btn ctrl" id="ctrlMic" type="button" title="Mute"><i data-icon="mic"></i></button>
+        <button class="call-btn ctrl" id="ctrlCam" type="button" title="Camera"><i data-icon="video"></i></button>
+        <button class="call-btn ctrl" id="ctrlScreen" type="button" title="Share screen"><i data-icon="monitor"></i></button>
+        <button class="call-btn decline" id="ctrlHang" type="button" title="End call"><i data-icon="phone"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script>
+    const CURRENT_USER = <%- JSON.stringify({ id: String(user._id), username: user.username, email: user.email, photo: user.photo || "", bio: user.bio || "" }) %>;
+    const CURRENT_USER_ID = CURRENT_USER.id;
+    const CURRENT_USERNAME = CURRENT_USER.username;
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/chat.js?v=20"></script>
+  <script src="/js/calls.js?v=20"></script>
+</body>
+</html>

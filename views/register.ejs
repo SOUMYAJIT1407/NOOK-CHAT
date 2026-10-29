@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Register — NOOK</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/register.css"
+    >
+
+</head>
+
+
+<body>
+
+<main class="register-page">
+
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="register-bg"></div>
+
+    <div class="register-overlay"></div>
+
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="register-nav">
+
+        <a
+            href="/"
+            class="nook-brand"
+        >
+
+            <span class="brand-mark">
+                N
+            </span>
+
+            NOOK
+
+        </a>
+
+
+        <p>
+
+            Already have an account?
+
+            <a href="/login">
+                Login →
+            </a>
+
+        </p>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <section class="register-layout">
+
+
+        <!-- =====================================
+             LEFT SIDE
+        ====================================== -->
+
+        <div class="intro">
+
+
+            <span class="eyebrow">
+                JOIN NOOK
+            </span>
+
+
+            <h1>
+
+                Create Your
+
+                <span>
+                    Account
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Join NOOK and start connecting
+                with real people. Chat, share
+                moments, and stay connected.
+
+            </p>
+
+
+
+            <!-- FEATURES -->
+
+            <div class="features">
+
+
+                <div>
+
+                    <b>
+                        ◌
+                    </b>
+
+                    <section>
+
+                        <strong>
+                            Chat Freely
+                        </strong>
+
+                        <small>
+                            Send messages and share moments.
+                        </small>
+
+                    </section>
+
+                </div>
+
+
+
+                <div>
+
+                    <b>
+                        ⌕
+                    </b>
+
+                    <section>
+
+                        <strong>
+                            Stay Connected
+                        </strong>
+
+                        <small>
+                            Keep your conversations in one place.
+                        </small>
+
+                    </section>
+
+                </div>
+
+
+
+                <div>
+
+                    <b>
+                        ✦
+                    </b>
+
+                    <section>
+
+                        <strong>
+                            Real Connections
+                        </strong>
+
+                        <small>
+                            A simple space for meaningful chats.
+                        </small>
+
+                    </section>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             REGISTER CARD
+        ====================================== -->
+
+        <div class="register-card">
+
+
+            <!-- BRAND -->
+
+            <div class="card-brand">
+
+                <span class="brand-mark small">
+                    N
+                </span>
+
+                NOOK
+
+            </div>
+
+
+
+            <h2>
+                Create your account
+            </h2>
+
+
+            <p class="subtitle">
+                Fill in your details to get started.
+            </p>
+
+
+
+            <!-- =================================
+                 REGISTER FORM
+            ================================== -->
+
+            <form
+                id="registerForm"
+                action="/register"
+                method="POST"
+                novalidate
+            >
+
+
+
+                <!-- =================================
+                     USERNAME
+                ================================== -->
+
+                <label>
+
+                    Username
+
+
+                    <div class="input-wrap">
+
+                        <span>
+                            ◎
+                        </span>
+
+
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            placeholder="Choose a username"
+                            minlength="3"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small
+                        data-error-for="username"
+                    ></small>
+
+                </label>
+
+
+
+                <!-- =================================
+                     EMAIL
+                ================================== -->
+
+                <label>
+
+                    Email address
+
+
+                    <div class="input-wrap">
+
+                        <span>
+                            ✉
+                        </span>
+
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small
+                        data-error-for="email"
+                    ></small>
+
+                </label>
+
+
+
+                <!-- =================================
+                     PASSWORD
+                ================================== -->
+
+                <label>
+
+                    Password
+
+
+                    <div class="input-wrap">
+
+                        <span>
+                            ▢
+                        </span>
+
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Create a password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+
+
+                        <!-- SHOW / HIDE -->
+
+                        <button
+                            type="button"
+                            class="toggle"
+                            data-target="password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <!-- PASSWORD ERROR -->
+
+                    <small
+                        data-error-for="password"
+                    ></small>
+
+
+
+                    <!-- PASSWORD STRENGTH METER (filled in by register.js) -->
+
+                    <div
+                        class="strength"
+                        id="strengthMeter"
+                        data-level="0"
+                        aria-live="polite"
+                    >
+
+                        <div class="strength-bars">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="strength-text">
+                            <span>Password strength</span>
+                            <strong id="strengthLabel">Enter a password</strong>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD REQUIREMENTS -->
+
+                    <div class="password-rules">
+
+
+                        <div
+                            id="rule-letters"
+                            class="password-rule"
+                        >
+
+                            <span class="rule-icon">
+                                ✕
+                            </span>
+
+                            <span>
+                                At least 3 letters
+                            </span>
+
+                        </div>
+
+
+
+                        <div
+                            id="rule-capital"
+                            class="password-rule"
+                        >
+
+                            <span class="rule-icon">
+                                ✕
+                            </span>
+
+                            <span>
+                                At least 1 capital letter
+                            </span>
+
+                        </div>
+
+
+
+                        <div
+                            id="rule-special"
+                            class="password-rule"
+                        >
+
+                            <span class="rule-icon">
+                                ✕
+                            </span>
+
+                            <span>
+                                At least 1 special character
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </label>
+
+
+
+                <!-- =================================
+                     CONFIRM PASSWORD
+                ================================== -->
+
+                <label>
+
+                    Confirm password
+
+
+                    <div class="input-wrap">
+
+                        <span>
+                            ▣
+                        </span>
+
+
+                        <input
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+
+                        <!-- SHOW / HIDE -->
+
+                        <button
+                            type="button"
+                            class="toggle"
+                            data-target="confirmPassword"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <small
+                        data-error-for="confirmPassword"
+                    ></small>
+
+                </label>
+
+
+
+                <!-- =================================
+                     TERMS
+                ================================== -->
+
+                <label class="terms">
+
+                    <input
+                        id="terms"
+                        type="checkbox"
+                        required
+                    >
+
+
+                    <span>
+
+                        I agree to the
+
+                        <a href="#">
+                            Terms
+                        </a>
+
+                        and
+
+                        <a href="#">
+                            Privacy Policy
+                        </a>.
+
+                    </span>
+
+                </label>
+
+
+
+                <!-- =================================
+                     CREATE ACCOUNT
+                ================================== -->
+
+                <button
+                    class="create-btn"
+                    type="submit"
+                >
+
+                    <span>
+                        Create Account
+                    </span>
+
+                    <b>
+                        →
+                    </b>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- =================================
+                 DIVIDER
+            ================================== -->
+
+            <div class="divider">
+
+                <span></span>
+
+                or
+
+                <span></span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 SOCIAL LOGIN
+            ================================== -->
+
+            <div class="social">
+
+                <!-- Starts the real Google OAuth flow (creates the account on first use) -->
+                <a href="/auth/google">
+                    Google
+                </a>
+
+
+                <!-- Facebook: a plain link to Facebook only (no Facebook login is performed) -->
+                <a
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Facebook
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================
+                 LOGIN
+            ================================== -->
+
+            <p class="bottom">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login →
+                </a>
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================== -->
+
+<div id="authNotice"
+     data-message="<%= typeof error !== 'undefined' && error ? error : '' %>"
+     data-type="error"
+     hidden></div>
+<script src="/js/auth-notice.js"></script>
+<script src="/js/register.js"></script>
+
+
+</body>
+
+</html>
